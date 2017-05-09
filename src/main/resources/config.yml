@@ -1,0 +1,11 @@
+###When the player direction is used. This is the height the player gets launched in to the air (NOT BLOCKS!)###
+###Default: 0.201###
+HeightBoost: 0.201
+
+###When the player direction is used. This is the multiplier the player gets launched in to the direction it's looking (NOT BLOCKS!)###
+###Default: 3.8###
+DirectionMultiplier: 3.8
+
+###When the sign is created, this is the maximum boost that can be specified on the sign###
+###Default: 10###
+MaxBoost: 10.0
