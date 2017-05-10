@@ -19,9 +19,9 @@ import org.bukkit.util.Vector;
 import java.io.File;
 
 public class Main extends JavaPlugin implements Listener {
-    double heightBoost = 0.201D;
-    double dirMultiplier = 3.8D;
-    double maxBoost = 10.0D;
+    private double heightBoost = 0.201D;
+    private double dirMultiplier = 3.8D;
+    private double maxBoost = 10.0D;
 
     public Main() {
     }
@@ -48,17 +48,17 @@ public class Main extends JavaPlugin implements Listener {
                         double y = Double.parseDouble(event.getLine(2));
                         double z = Double.parseDouble(event.getLine(3));
                         if (x <= maxBoost && y <= maxBoost && z <= maxBoost) {
-                            event.setLine(0, ChatColor.GRAY + "[" + ChatColor.DARK_RED + "Boost" + ChatColor.GRAY + "]");
+                            event.setLine(0, String.format("%s[%sBoost%s]", ChatColor.GRAY, ChatColor.DARK_RED, ChatColor.GRAY));
                         } else {
                             event.setCancelled(true);
-                            event.getPlayer().sendMessage(ChatColor.DARK_RED + "Error" + ChatColor.GRAY + ": One of your entered values is too high! None of them should be higher than " + String.format("%d", maxBoost) + "!");
+                            event.getPlayer().sendMessage(String.format("%sError%s: One of your entered values is too high! None of them should be higher than %s!", ChatColor.DARK_RED, ChatColor.GRAY, maxBoost));
                         }
                     } catch (NumberFormatException var9) {
                         if (!event.getLine(1).equalsIgnoreCase("player")) {
                             event.setCancelled(true);
-                            event.getPlayer().sendMessage(ChatColor.DARK_RED + "Error" + ChatColor.GRAY + ": Invalid boost-sign.");
+                            event.getPlayer().sendMessage(String.format("%sError%s: Invalid boost-sign.", ChatColor.DARK_RED, ChatColor.GRAY));
                         } else {
-                            event.setLine(0, ChatColor.GRAY + "[" + ChatColor.DARK_RED + "Boost" + ChatColor.GRAY + "]");
+                            event.setLine(0, String.format("%s[%sBoost%s]", ChatColor.GRAY, ChatColor.DARK_RED, ChatColor.GRAY));
                         }
                     }
                 }
@@ -76,14 +76,14 @@ public class Main extends JavaPlugin implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction() == Action.PHYSICAL && !event.isCancelled()) {
-            if (event.getClickedBlock().getType() == Material.GOLD_PLATE) {
+            if (event.getClickedBlock().getType() == Material.STONE_PLATE) {
                 Block block = player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock();
                 if (player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.SIGN ||
                         player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.SIGN_POST ||
                         player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.WALL_SIGN) {
                     BlockState stateBlock = block.getState();
                     Sign sign = (Sign) stateBlock;
-                    if (sign.getLine(0).equals(ChatColor.GRAY + "[" + ChatColor.DARK_RED + "Boost" + ChatColor.GRAY + "]")) {
+                    if (sign.getLine(0).equals(String.format("%s[%sBoost%s]", ChatColor.GRAY, ChatColor.DARK_RED, ChatColor.GRAY))) {
                         try {
                             double x = Double.parseDouble(sign.getLine(1));
                             double y = Double.parseDouble(sign.getLine(2));
