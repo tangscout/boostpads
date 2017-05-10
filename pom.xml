@@ -6,7 +6,7 @@
 
     <groupId>net.scoutlink</groupId>
     <artifactId>boostpads</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
 
     <repositories>
