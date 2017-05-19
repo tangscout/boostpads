@@ -76,7 +76,7 @@ public class Main extends JavaPlugin implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction() == Action.PHYSICAL && !event.isCancelled()) {
-            if (event.getClickedBlock().getType() == Material.GOLD_PLATE) {
+            if (event.getClickedBlock().getType() == Material.STONE_PLATE) {
                 Block block = player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock();
                 if (player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.SIGN ||
                         player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.SIGN_POST ||
