@@ -77,10 +77,8 @@ public class Main extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
         if (event.getAction() == Action.PHYSICAL && !event.isCancelled()) {
             if (event.getClickedBlock().getType() == Material.STONE_PLATE) {
-                Block block = player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock();
-                if (player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.SIGN ||
-                        player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.SIGN_POST ||
-                        player.getLocation().add(0.0D, -2.0D, 0.0D).getBlock().getType() == Material.WALL_SIGN) {
+                Block block = event.getClickedBlock().getLocation().add(0.0D, -2.0D, 0.0D).getBlock();
+                if (block.getType() == Material.SIGN || block.getType() == Material.SIGN_POST || block.getType() == Material.WALL_SIGN) {
                     BlockState stateBlock = block.getState();
                     Sign sign = (Sign) stateBlock;
                     if (sign.getLine(0).equals(ChatColor.GRAY + "[" + ChatColor.DARK_RED + "Boost" + ChatColor.GRAY + "]")) {
